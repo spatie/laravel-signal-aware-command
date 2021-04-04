@@ -4,6 +4,7 @@ namespace Spatie\SignableCommand;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Spatie\SignableCommand\Events\SignalReceived;
 use Symfony\Component\Console\Command\SignalableCommandInterface;
 
 abstract class SignableCommand extends Command implements SignalableCommandInterface
@@ -15,6 +16,8 @@ abstract class SignableCommand extends Command implements SignalableCommandInter
 
     public function handleSignal(int $signal): void
     {
+        event(new SignalReceived($signal, $this));
+
         $this
             ->executeRegisteredSignalHandlers($signal)
             ->handleSignalMethodOnCommandClass($signal);
