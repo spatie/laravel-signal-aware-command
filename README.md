@@ -10,7 +10,7 @@ Using this package you can easily handle signals like `SIGINT`,  `SIGTERM` in yo
 Here's a quick example where the `SIGINT` signal is handled.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -53,7 +53,7 @@ composer require spatie/laravel-signal-aware-command
 In order to make an Artisan command signal aware you need to let it extend `SignalAwareCommand`.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -73,7 +73,7 @@ There are three ways to handle signals:
 To handle signals on the command itself, all you need to do is to define a method that starts with `on` followed by the name of the signal. Here's an example where the `SIGINT` signal is handled.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -102,7 +102,7 @@ Using the `Signal` facade you can register signal handling code anywhere in your
 First, you need to define the signals you want to handle in your command in the `handlesSignals` property.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
