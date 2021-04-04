@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class Signal
 {
-    protected $registeredSignalHandlers = [];
+    protected array $registeredSignalHandlers = [];
 
     public function handle(int $signal, callable $callable)
     {
