@@ -2,6 +2,8 @@
 
 namespace Spatie\SignableCommand;
 
+use Illuminate\Console\Command;
+
 class Signal
 {
     protected $registeredSignalHandlers = [];
@@ -11,10 +13,10 @@ class Signal
         $this->registeredSignalHandlers[$signal][] = $callable;
     }
 
-    public function executeSignalHandlers(int $signal)
+    public function executeSignalHandlers(int $signal, Command $command)
     {
         foreach($this->registeredSignalHandlers[$signal] ?? [] as $signalHandler) {
-            $signalHandler($signal);
+            $signalHandler($signal, $command);
         }
     }
 }

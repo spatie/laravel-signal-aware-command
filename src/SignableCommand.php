@@ -14,6 +14,6 @@ abstract class SignableCommand extends Command implements SignalableCommandInter
 
     public function handleSignal(int $signal): void
     {
-        app(Signal::class)->executeSignalHandlers($signal);
+        app(Signal::class)->executeSignalHandlers($signal, $this);
     }
 }
