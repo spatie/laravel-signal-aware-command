@@ -1,12 +1,12 @@
 {
-    "name": "spatie/laravel_signable_command",
+    "name": "spatie/laravel-signable-command",
     "description": "Handle process signals in artisan commands",
     "keywords": [
         "spatie",
         "laravel",
-        "laravel_signable_command"
+        "laravel-signable-command"
     ],
-    "homepage": "https://github.com/spatie/laravel_signable_command",
+    "homepage": "https://github.com/spatie/laravel-signable-command",
     "license": "MIT",
     "authors": [
         {
@@ -53,7 +53,7 @@
                 "Spatie\\SignableCommand\\SignableCommandServiceProvider"
             ],
             "aliases": {
-                "SignableCommand": "Spatie\\SignableCommand\\SignableCommandFacade"
+                "Siignal": "Spatie\\SignableCommand\\Facades\\Signal"
             }
         }
     },

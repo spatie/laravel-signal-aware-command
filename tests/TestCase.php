@@ -34,7 +34,7 @@ class TestCase extends Orchestra
         ]);
 
         /*
-        include_once __DIR__.'/../database/migrations/create_laravel_signable_command_table.php.stub';
+        include_once __DIR__.'/../database/migrations/create_laravel-signable-command_table.php.stub';
         (new \CreatePackageTable())->up();
         */
     }
