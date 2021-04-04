@@ -95,7 +95,7 @@ class YourCommand extends SignalAwareCommand
 }
 ```
 
-### Via the `Signal` facade
+#### Via the `Signal` facade
 
 Using the `Signal` facade you can register signal handling code anywhere in your app.
 
@@ -136,7 +136,7 @@ class SomeOtherClass
 }
 ```
 
-### Using the `SignalReceived` event
+#### Using the `SignalReceived` event
 
 Whenever a signal is received, the `Spatie\SignalAwareCommand\Events\SignalReceived` event is fired.
 
