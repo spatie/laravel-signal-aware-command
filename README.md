@@ -1,4 +1,4 @@
-# Handle process signals in artisan commands
+# Handle signals in artisan commands
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-signal-aware-command.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signal-aware-command)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-signal-aware-command/run-tests?label=tests)](https://github.com/spatie/laravel-signal-aware-command/actions?query=workflow%3ATests+branch%3Amaster)
