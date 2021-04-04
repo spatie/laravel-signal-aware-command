@@ -32,13 +32,13 @@ abstract class SignalAwareCommand extends Command implements SignalableCommandIn
 
     protected function handleSignalMethodOnCommandClass(int $signal): self
     {
-        if (!$signalName = Signals::getSignalName($signal)) {
+        if (! $signalName = Signals::getSignalName($signal)) {
             return $this;
         }
 
         $methodName = Str::camel("on {$signalName}");
 
-        if (!method_exists($this, $methodName)) {
+        if (! method_exists($this, $methodName)) {
             return $this;
         }
 
@@ -50,7 +50,7 @@ abstract class SignalAwareCommand extends Command implements SignalableCommandIn
     protected function autoDiscoverSignals(): array
     {
         return collect(get_class_methods($this))
-            ->filter(fn(string $methodName) => Str::startsWith($methodName, 'on'))
+            ->filter(fn (string $methodName) => Str::startsWith($methodName, 'on'))
             ->map(function (string $methodName) {
                 $possibleSignalName = Str::of($methodName)->after('on')->upper();
 
