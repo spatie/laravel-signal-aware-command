@@ -5,13 +5,32 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-signable-command/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-signable-command/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-signable-command.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signable-command)
 
-[](delete) 1) manually replace `Freek Van der Herten, freekmurze, auhor@domain.com, spatie, spatie, Vendor Name, laravel-signable-command, laravel-signable-command, laravel-signable-command, SignableCommand, Handle process signals in artisan commands` with their correct values
-[](delete) in `CHANGELOG.md, LICENSE.md, README.md, ExampleTest.php, ModelFactory.php, SignableCommand.php, SignableCommandCommand.php, SignableCommandFacade.php, SignableCommandServiceProvider.php, TestCase.php, composer.json, create_laravel-signable-command_table.php.stub`
-[](delete) and delete `configure-laravel-signable-command.sh`
+Using this package you can easily handle signals like `SIGINT`,  `SIGTERM` in your Laravel app.
 
-[](delete) 2) You can also run `./configure-laravel-signable-command.sh` to do this automatically.
+Here's a quick example where the `SIGINT` signal is handled.
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+```php
+use Spatie\SignableCommand\SignableCommand
+
+class YourCommand extends SignableCommand
+{
+    protected $signature = 'your-command';
+
+    public function handle()
+    {
+        $this->info('command started');
+
+        while(true) {
+            // do some work
+        }
+    }
+
+    public function onSigint()
+    {
+        $this->info('You stopped the command');
+    }
+}
+```
 
 ## Support us
 
