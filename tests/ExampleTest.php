@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SignableCommand\Tests;
+namespace Spatie\SignalAwareCommand\Tests;
 
 class ExampleTest extends TestCase
 {

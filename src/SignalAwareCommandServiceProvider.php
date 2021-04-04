@@ -1,15 +1,15 @@
 <?php
 
-namespace Spatie\SignableCommand;
+namespace Spatie\SignalAwareCommand;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class SignableCommandServiceProvider extends PackageServiceProvider
+class SignalAwareCommandServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $package->name('signable-command');
+        $package->name('signal-aware-command');
 
         $this->app->singleton(Signal::class, function () {
             return new Signal();

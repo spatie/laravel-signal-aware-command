@@ -1,17 +1,17 @@
 <?php
 
-namespace Spatie\SignableCommand;
+namespace Spatie\SignalAwareCommand;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Spatie\SignableCommand\Events\SignalReceived;
+use Spatie\SignalAwareCommand\Events\SignalReceived;
 use Symfony\Component\Console\Command\SignalableCommandInterface;
 
-abstract class SignableCommand extends Command implements SignalableCommandInterface
+abstract class SignalAwareCommand extends Command implements SignalableCommandInterface
 {
     public function getSubscribedSignals(): array
     {
-        return $this->handlesSignals ?? [];
+        return array_merge($this->autoDiscoverSignals(), $this->handlesSignals ?? []);
     }
 
     public function handleSignal(int $signal): void
@@ -32,13 +32,13 @@ abstract class SignableCommand extends Command implements SignalableCommandInter
 
     protected function handleSignalMethodOnCommandClass(int $signal): self
     {
-        if (! $signalName = $this->getSignalName($signal)) {
+        if (!$signalName = Signals::getSignalName($signal)) {
             return $this;
         }
 
         $methodName = Str::camel("on {$signalName}");
 
-        if (! method_exists($this, $methodName)) {
+        if (!method_exists($this, $methodName)) {
             return $this;
         }
 
@@ -47,24 +47,16 @@ abstract class SignableCommand extends Command implements SignalableCommandInter
         return $this;
     }
 
-    protected function getSignalName(int $lookingForSignalNumber): ?string
+    protected function autoDiscoverSignals(): array
     {
-        foreach (get_defined_constants(true)['pcntl'] as $signalName => $signalNumber) {
-            if ($signalNumber !== $lookingForSignalNumber) {
-                continue;
-            }
+        return collect(get_class_methods($this))
+            ->filter(fn(string $methodName) => Str::startsWith($methodName, 'on'))
+            ->map(function (string $methodName) {
+                $possibleSignalName = Str::of($methodName)->after('on')->upper();
 
-            if (Str::startsWith($signalName, 'SIG_')) {
-                continue;
-            }
-
-            if (! Str::startsWith($signalName, 'SIG')) {
-                continue;
-            }
-
-            return $signalName;
-        }
-
-        return null;
+                return Signals::getSignalForName($possibleSignalName);
+            })
+            ->filter()
+            ->toArray();
     }
 }

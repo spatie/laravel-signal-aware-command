@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\SignableCommand;
+namespace Spatie\SignalAwareCommand;
 
 use Illuminate\Console\Command;
 

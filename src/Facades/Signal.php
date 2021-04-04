@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\SignableCommand\Facades;
+namespace Spatie\SignalAwareCommand\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Spatie\SignableCommand\Signal as SignalClass;
+use Spatie\SignalAwareCommand\Signal as SignalClass;
 
 /**
- * @see \Spatie\SignableCommand\Signal
+ * @see \Spatie\SignalAwareCommand\Signal
  */
 class Signal extends Facade
 {

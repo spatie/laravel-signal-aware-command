@@ -1,12 +1,12 @@
 {
-    "name": "spatie/laravel-signable-command",
+    "name": "spatie/laravel-signal-aware-command",
     "description": "Handle process signals in artisan commands",
     "keywords": [
         "spatie",
         "laravel",
-        "laravel-signable-command"
+        "laravel-signal-aware-command"
     ],
-    "homepage": "https://github.com/spatie/laravel-signable-command",
+    "homepage": "https://github.com/spatie/laravel-signal-aware-command",
     "license": "MIT",
     "authors": [
         {
@@ -30,13 +30,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\SignableCommand\\": "src",
-            "Spatie\\SignableCommand\\Database\\Factories\\": "database/factories"
+            "Spatie\\SignalAwareCommand\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\SignableCommand\\Tests\\": "tests"
+            "Spatie\\SignalAwareCommand\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +49,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\SignableCommand\\SignableCommandServiceProvider"
+                "Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider"
             ],
             "aliases": {
-                "Siignal": "Spatie\\SignableCommand\\Facades\\Signal"
+                "Siignal": "Spatie\\SignalAwareCommand\\Facades\\Signal"
             }
         }
     },
