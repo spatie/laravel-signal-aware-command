@@ -11,9 +11,8 @@ class SignableCommandServiceProvider extends PackageServiceProvider
     {
         $package->name('signable-command');
 
-        $this->app->singleton(Signal::class, function() {
+        $this->app->singleton(Signal::class, function () {
             return new Signal();
         });
-
     }
 }
