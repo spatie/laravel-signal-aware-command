@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Spatie\SignableCommand\Tests;
 
 class ExampleTest extends TestCase
 {
