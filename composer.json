@@ -1,6 +1,6 @@
 {
     "name": "spatie/laravel-signal-aware-command",
-    "description": "Handle process signals in artisan commands",
+    "description": "Handle signals in artisan commands",
     "keywords": [
         "spatie",
         "laravel",

@@ -16,7 +16,7 @@ class Signal
     public function executeSignalHandlers(int $signal, Command $command)
     {
         foreach ($this->registeredSignalHandlers[$signal] ?? [] as $signalHandler) {
-            $signalHandler($signal, $command);
+            $signalHandler($command);
         }
     }
 }

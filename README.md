@@ -18,16 +18,16 @@ class YourCommand extends SignalAwareCommand
 
     public function handle()
     {
-        $this->info('command started');
+        $this->info('Command started...');
 
-        while(true) {
-            // do some work
-        }
+        sleep(100);
     }
 
     public function onSigint()
     {
-        $this->info('You stopped the command');
+        // will be executed when you stop the command
+    
+        $this->info('You stopped the command!');
     }
 }
 ```
@@ -48,30 +48,138 @@ You can install the package via composer:
 composer require spatie/laravel-signal-aware-command
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Spatie\SignalAwareCommand\SignalAwareCommandServiceProvider" --tag="laravel-signal-aware-command-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Spatie\SignalAwareCommand\SignalAwareCommandServiceProvider" --tag="laravel-signal-aware-command-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
+In order to make an Artisan command signal aware you need to let it extend `SignalAwareCommand`.
+
 ```php
-$laravel-signal-aware-command = new Spatie\SignalAwareCommand();
-echo $laravel-signal-aware-command->echoPhrase('Hello, Spatie!');
+use Spatie\SignalAwareCommand\SignalAwareCommand
+
+class YourCommand extends SignalAwareCommand
+{
+    // your code
+}
+```
+
+### Handling signals
+
+There are three ways to handle signals:
+- on the command itself
+- via the `Signal` facade
+- using the `SignalReceived` event
+
+#### On the command
+
+To handle signals on the command itself, all you need to do is to define a method that starts with `on` followed by the name of the signal. Here's an example where the `SIGINT` signal is handled.
+
+```php
+use Spatie\SignalAwareCommand\SignalAwareCommand
+
+class YourCommand extends SignalAwareCommand
+{
+    protected $signature = 'your-command';
+
+    public function handle()
+    {
+        $this->info('Command started...');
+
+        sleep(100);
+    }
+
+    public function onSigint()
+    {
+        // will be executed when you stop the command
+    
+        $this->info('You stopped the command!');
+    }
+}
+```
+
+### Via the `Signal` facade
+
+Using the `Signal` facade you can register signal handling code anywhere in your app.
+
+First, you need to define the signals you want to handle in your command in the `handlesSignals` property.
+
+```php
+use Spatie\SignalAwareCommand\SignalAwareCommand
+
+class YourCommand extends SignalAwareCommand
+{
+    protected $signature = 'your-command';
+    
+    protected $handlesSignals = [SIGINT];
+
+    public function handle()
+    {
+        (new SomeOtherClass())->performSomeWork();
+
+        sleep(100);
+    }
+}
+```
+
+In any class you'd like you can use the `Signal` facade to register code that should be executed when a signal is received.
+
+```php
+use Illuminate\Console\Command;
+use Spatie\SignalAwareCommand\Facades\Signal;
+
+class SomeOtherClass
+{
+    public function performSomeWork()
+    {
+        Signal::handle(SIGNINT, function(Command $commandThatReceivedSignal) {
+            $commandThatReceivedSignal->info('Received the SIGINT signal!');
+        })
+    }
+}
+```
+
+### Using the `SignalReceived` event
+
+Whenever a signal is received, the `Spatie\SignalAwareCommand\Events\SignalReceived` event is fired.
+
+To register which events you want to receive you must define a `handlesSignals` property on your command. Here's an example where we register listening for the `SIGINT` signel.
+
+```php
+use Spatie\SignalAwareCommand\SignalAwareCommand
+
+class YourCommand extends SignalAwareCommand
+{
+    protected $signature = 'your-command';
+    
+    protected $handlesSignals = [SIGINT];
+
+    public function handle()
+    {
+        (new SomeOtherClass())->performSomeWork();
+
+        sleep(100);
+    }
+}
+```
+
+In any class you'd like you can listen for the `SignalReceived` event.
+
+```php
+use Illuminate\Console\Command;
+use Spatie\SignalAwareCommand\Events\SignalReceived;use Spatie\SignalAwareCommand\Facades\Signal;use Spatie\SignalAwareCommand\Signals;
+
+class SomeOtherClass
+{
+    public function performSomeWork()
+    {
+        Event::listen(function(SignalReceived $event) {
+            $signalNumber = $event->signal;
+            
+            $signalName = Signals::getSignalName($signalNumber);
+        
+            $event->command->info("Received the {$signalName} signal");
+        });
+    }
+}
+
 ```
 
 ## Testing

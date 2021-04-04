@@ -8,7 +8,7 @@ class SignalReceived
 {
     public function __construct(
         public int $signal,
-        public Command $class
+        public Command $command
     ) {
     }
 }
