@@ -25,7 +25,7 @@ class SignalTest extends TestCase
     /** @test */
     public function it_can_register_and_execute_signal_handling_code()
     {
-        $this->signal->handle(SIGINT, function() {
+        $this->signal->handle(SIGINT, function () {
             $this->executed = true;
         });
 
