@@ -2,6 +2,8 @@
 
 namespace Spatie\SignalAwareCommand\Tests;
 
+use Illuminate\Support\Facades\Event;
+use Spatie\SignalAwareCommand\Events\SignalReceived;
 use Spatie\SignalAwareCommand\Signal;
 use Spatie\SignalAwareCommand\Tests\TestClasses\TestCommand;
 
@@ -13,7 +15,11 @@ class SignalTest extends TestCase
 
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->signal = new Signal();
+
+        Event::fake();
     }
 
     /** @test */
@@ -26,5 +32,16 @@ class SignalTest extends TestCase
         $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
 
         $this->assertTrue($this->executed);
+    }
+
+    /** @test */
+    public function it_will_fire_the_signal_aware_event()
+    {
+        /** @var \Spatie\SignalAwareCommand\SignalAwareCommand $command */
+        $command = app()->make(TestCommand::class);
+
+        $command->handleSignal(SIGINT);
+
+        Event::assertDispatched(SignalReceived::class);
     }
 }
