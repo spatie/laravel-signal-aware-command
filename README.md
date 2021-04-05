@@ -129,7 +129,7 @@ class SomeOtherClass
 {
     public function performSomeWork()
     {
-        Signal::handle(SIGNINT, function(Command $commandThatReceivedSignal) {
+        Signal::handle(SIGINT, function(Command $commandThatReceivedSignal) {
             $commandThatReceivedSignal->info('Received the SIGINT signal!');
         })
     }
@@ -140,7 +140,7 @@ class SomeOtherClass
 
 Whenever a signal is received, the `Spatie\SignalAwareCommand\Events\SignalReceived` event is fired.
 
-To register which events you want to receive you must define a `handlesSignals` property on your command. Here's an example where we register listening for the `SIGINT` signel.
+To register which events you want to receive you must define a `handlesSignals` property on your command. Here's an example where we register listening for the `SIGINT` signal.
 
 ```php
 use Spatie\SignalAwareCommand\SignalAwareCommand
