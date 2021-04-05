@@ -203,6 +203,10 @@ class SomeOtherClass
 }
 ```
 
+## Learn how this package was built
+
+The foundations of this pacakge were coded up in [this live stream on YouTube](https://www.youtube.com/watch?v=D9hxQoD47jI).
+
 ## Testing
 
 ```bash
