@@ -10,7 +10,7 @@ Using this package you can easily handle signals like `SIGINT`,  `SIGTERM` in yo
 Here's a quick example where the `SIGINT` signal is handled.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -53,7 +53,7 @@ composer require spatie/laravel-signal-aware-command
 In order to make an Artisan command signal aware you need to let it extend `SignalAwareCommand`.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -73,7 +73,7 @@ There are three ways to handle signals:
 To handle signals on the command itself, all you need to do is to define a method that starts with `on` followed by the name of the signal. Here's an example where the `SIGINT` signal is handled.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -95,14 +95,14 @@ class YourCommand extends SignalAwareCommand
 }
 ```
 
-### Via the `Signal` facade
+#### Via the `Signal` facade
 
 Using the `Signal` facade you can register signal handling code anywhere in your app.
 
 First, you need to define the signals you want to handle in your command in the `handlesSignals` property.
 
 ```php
-use Spatie\SignalAwareCommand\SignalAwareCommand
+use Spatie\SignalAwareCommand\SignalAwareCommand;
 
 class YourCommand extends SignalAwareCommand
 {
@@ -129,7 +129,7 @@ class SomeOtherClass
 {
     public function performSomeWork()
     {
-        Signal::handle(SIGNINT, function(Command $commandThatReceivedSignal) {
+        Signal::handle(SIGINT, function(Command $commandThatReceivedSignal) {
             $commandThatReceivedSignal->info('Received the SIGINT signal!');
         })
     }
@@ -157,11 +157,12 @@ public function performSomeWork()
 
 To clear all handlers for all signals use `Signal::clearHandlers()`.
 
-### Using the `SignalReceived` event
+#### Using the `SignalReceived` event
+
 
 Whenever a signal is received, the `Spatie\SignalAwareCommand\Events\SignalReceived` event is fired.
 
-To register which events you want to receive you must define a `handlesSignals` property on your command. Here's an example where we register listening for the `SIGINT` signel.
+To register which events you want to receive you must define a `handlesSignals` property on your command. Here's an example where we register listening for the `SIGINT` signal.
 
 ```php
 use Spatie\SignalAwareCommand\SignalAwareCommand
