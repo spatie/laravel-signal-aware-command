@@ -136,6 +136,27 @@ class SomeOtherClass
 }
 ```
 
+You can call `clearHandlers` if you want to remove a handler that was previously registered.
+
+```php
+use Spatie\SignalAwareCommand\Facades\Signal;
+
+public function performSomeWork()
+{
+    Signal::handle(SIGNINT, function() {
+        // perform cleanup
+    });
+    
+    $this->doSomeWork();
+    
+    // at this point doSomeWork was executed without any problems
+    // running a cleanup isn't necessary anymore
+    Signal::clearHandlers(SIGINT);
+}
+```
+
+To clear all handlers for all signals use `Signal::clearHandlers()`.
+
 ### Using the `SignalReceived` event
 
 Whenever a signal is received, the `Spatie\SignalAwareCommand\Events\SignalReceived` event is fired.
@@ -163,8 +184,8 @@ class YourCommand extends SignalAwareCommand
 In any class you'd like you can listen for the `SignalReceived` event.
 
 ```php
-use Illuminate\Console\Command;
-use Spatie\SignalAwareCommand\Events\SignalReceived;use Spatie\SignalAwareCommand\Facades\Signal;use Spatie\SignalAwareCommand\Signals;
+use Spatie\SignalAwareCommand\Events\SignalReceived;
+use Spatie\SignalAwareCommand\Signals;
 
 class SomeOtherClass
 {
@@ -179,7 +200,6 @@ class SomeOtherClass
         });
     }
 }
-
 ```
 
 ## Testing

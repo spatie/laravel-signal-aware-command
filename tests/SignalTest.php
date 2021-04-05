@@ -44,4 +44,18 @@ class SignalTest extends TestCase
 
         Event::assertDispatched(SignalReceived::class);
     }
+
+    /** @test */
+    public function it_can_clear_registered_handlers()
+    {
+        $this->signal->handle(SIGINT, function () {
+            $this->executed = true;
+        });
+
+        $this->signal->clearHandlers(SIGINT);
+
+        $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
+
+        $this->assertFalse($this->executed);
+    }
 }
