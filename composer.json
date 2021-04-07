@@ -53,7 +53,7 @@
                 "Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider"
             ],
             "aliases": {
-                "Siignal": "Spatie\\SignalAwareCommand\\Facades\\Signal"
+                "Signal": "Spatie\\SignalAwareCommand\\Facades\\Signal"
             }
         }
     },
