@@ -70,7 +70,7 @@ There are three ways to handle signals:
 
 #### On the command
 
-To handle signals on the command itself, all you need to do is to define a method that starts with `on` followed by the name of the signal. Here's an example where the `SIGINT` signal is handled.
+To handle signals on the command itself, you need to let your command extend `SignalAwareCommand`. Next, define a method that starts with `on` followed by the name of the signal. Here's an example where the `SIGINT` signal is handled.
 
 ```php
 use Spatie\SignalAwareCommand\SignalAwareCommand;
@@ -202,6 +202,10 @@ class SomeOtherClass
     }
 }
 ```
+
+## Learn how this package was built
+
+The foundations of this pacakge were coded up in [this live stream on YouTube](https://www.youtube.com/watch?v=D9hxQoD47jI).
 
 ## Testing
 
