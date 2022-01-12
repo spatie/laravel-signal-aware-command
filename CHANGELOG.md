@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-signal-aware-command` will be documented in this file.
 
+## 1.2.0 - 2022-01-12
+
+Support Laravel 9
+
 ## 1.1.1 - 2021-04-14
 
 - fix facade name
