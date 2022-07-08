@@ -146,7 +146,7 @@ use Spatie\SignalAwareCommand\Facades\Signal;
 
 public function performSomeWork()
 {
-    Signal::handle(SIGNINT, function() {
+    Signal::handle(SIGINT, function() {
         // perform cleanup
     });
     
