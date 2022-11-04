@@ -8,12 +8,12 @@ use Spatie\SignalAwareCommand\SignalAwareCommandServiceProvider;
 
 class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Spatie\\SignalAwareCommand\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Spatie\\SignalAwareCommand\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
