@@ -1,61 +1,44 @@
 <?php
 
-namespace Spatie\SignalAwareCommand\Tests;
-
 use Illuminate\Support\Facades\Event;
 use Spatie\SignalAwareCommand\Events\SignalReceived;
 use Spatie\SignalAwareCommand\Signal;
 use Spatie\SignalAwareCommand\Tests\TestClasses\TestCommand;
 
-class SignalTest extends TestCase
-{
-    protected Signal $signal;
+beforeEach(function () {
+    $this->signal = new Signal();
+    $this->executed = false;
 
-    protected bool $executed = false;
+    Event::fake();
+});
 
-    public function setUp(): void
-    {
-        parent::setUp();
+it('can register an execute signal handling code', function () {
+    $this->signal->handle(SIGINT, function () {
+        $this->executed = true;
+    });
 
-        $this->signal = new Signal();
+    $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
 
-        Event::fake();
-    }
+    expect($this->executed)->toBeTrue();
+});
 
-    /** @test */
-    public function it_can_register_and_execute_signal_handling_code()
-    {
-        $this->signal->handle(SIGINT, function () {
-            $this->executed = true;
-        });
+it('will fire the signal aware event', function () {
+    /** @var \Spatie\SignalAwareCommand\SignalAwareCommand $command */
+    $command = app()->make(TestCommand::class);
 
-        $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
+    $command->handleSignal(SIGINT);
 
-        $this->assertTrue($this->executed);
-    }
+    Event::assertDispatched(SignalReceived::class);
+});
 
-    /** @test */
-    public function it_will_fire_the_signal_aware_event()
-    {
-        /** @var \Spatie\SignalAwareCommand\SignalAwareCommand $command */
-        $command = app()->make(TestCommand::class);
+it('can clear registered handlers', function () {
+    $this->signal->handle(SIGINT, function () {
+        $this->executed = true;
+    });
 
-        $command->handleSignal(SIGINT);
+    $this->signal->clearHandlers(SIGINT);
 
-        Event::assertDispatched(SignalReceived::class);
-    }
+    $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
 
-    /** @test */
-    public function it_can_clear_registered_handlers()
-    {
-        $this->signal->handle(SIGINT, function () {
-            $this->executed = true;
-        });
-
-        $this->signal->clearHandlers(SIGINT);
-
-        $this->signal->executeSignalHandlers(SIGINT, new TestCommand());
-
-        $this->assertFalse($this->executed);
-    }
-}
+    expect($this->executed)->toBeFalse();
+});
