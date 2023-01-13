@@ -4,8 +4,8 @@
 # Handle signals in Artisan commands
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-signal-aware-command.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signal-aware-command)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-signal-aware-command/run-tests?label=tests)](https://github.com/spatie/laravel-signal-aware-command/actions?query=workflow%3ATests+branch%3Amaster)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-signal-aware-command/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-signal-aware-command/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/spatie/laravel-signal-aware-command/run-tests.yml?branch=main&label=Tests)](https://github.com/spatie/laravel-signal-aware-command/actions?query=workflow%3ATests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/spatie/laravel-signal-aware-command/php-cs-fixer.yml?branch=main&label=Code%20Style)](https://github.com/spatie/laravel-signal-aware-command/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-signal-aware-command.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-signal-aware-command)
 
 Using this package you can easily handle signals like `SIGINT`,  `SIGTERM` in your Laravel app.
