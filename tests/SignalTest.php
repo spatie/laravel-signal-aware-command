@@ -26,9 +26,11 @@ it('will fire the signal aware event', function () {
     /** @var \Spatie\SignalAwareCommand\SignalAwareCommand $command */
     $command = app()->make(TestCommand::class);
 
-    $command->handleSignal(SIGINT);
+    $result = $command->handleSignal(SIGINT);
 
     Event::assertDispatched(SignalReceived::class);
+
+    expect($result)->toEqual(SIGINT);
 });
 
 it('can clear registered handlers', function () {
