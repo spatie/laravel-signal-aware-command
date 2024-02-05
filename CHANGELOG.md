@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-signal-aware-command` will be documented in this file.
 
+## 2.0.0 - 2024-02-05
+
+### What's Changed
+
+* Update .gitattributes by @parallels999 in https://github.com/spatie/laravel-signal-aware-command/pull/13
+* Add Support for Laravel 11 and drop Support for Laravel 8, 9, 10 by @stefanzweifel in https://github.com/spatie/laravel-signal-aware-command/pull/14
+
+### New Contributors
+
+* @parallels999 made their first contribution in https://github.com/spatie/laravel-signal-aware-command/pull/13
+* @stefanzweifel made their first contribution in https://github.com/spatie/laravel-signal-aware-command/pull/14
+
+**Full Changelog**: https://github.com/spatie/laravel-signal-aware-command/compare/1.3.0...2.0.0
+
 ## 1.3.0 - 2023-01-14
 
 ### What's Changed
