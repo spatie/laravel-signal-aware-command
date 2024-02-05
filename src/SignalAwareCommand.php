@@ -14,13 +14,15 @@ abstract class SignalAwareCommand extends Command implements SignalableCommandIn
         return array_merge($this->autoDiscoverSignals(), $this->handlesSignals ?? []);
     }
 
-    public function handleSignal(int $signal): void
+    public function handleSignal(int $signal, int|false $previousExitCode = 0): int|false
     {
         event(new SignalReceived($signal, $this));
 
         $this
             ->executeRegisteredSignalHandlers($signal)
             ->handleSignalMethodOnCommandClass($signal);
+
+        return $signal;
     }
 
     protected function executeRegisteredSignalHandlers(int $signal): self
