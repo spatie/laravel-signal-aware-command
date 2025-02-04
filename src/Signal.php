@@ -24,7 +24,7 @@ class Signal
         return $this;
     }
 
-    public function clearHandlers(int $signal = null): self
+    public function clearHandlers(?int $signal = null): self
     {
         if (is_null($signal)) {
             $this->registeredSignalHandlers = [];
