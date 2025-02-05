@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-signal-aware-command` will be documented in this file.
 
+## 2.0.1 - 2025-02-05
+
+### What's Changed
+
+* Fix implicitly nullable deprecation with PHP 8.4 by @xHeaven in https://github.com/spatie/laravel-signal-aware-command/pull/15
+
+### New Contributors
+
+* @xHeaven made their first contribution in https://github.com/spatie/laravel-signal-aware-command/pull/15
+
+**Full Changelog**: https://github.com/spatie/laravel-signal-aware-command/compare/2.0.0...2.0.1
+
 ## 2.0.0 - 2024-02-05
 
 ### What's Changed
