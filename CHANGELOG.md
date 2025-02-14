@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-signal-aware-command` will be documented in this file.
 
+## 2.1.0 - 2025-02-14
+
+### What's Changed
+
+* Laravel 12 Support by @erikn69 in https://github.com/spatie/laravel-signal-aware-command/pull/16
+
+**Full Changelog**: https://github.com/spatie/laravel-signal-aware-command/compare/2.0.1...2.1.0
+
 ## 2.0.1 - 2025-02-05
 
 ### What's Changed
