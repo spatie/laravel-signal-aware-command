@@ -2,6 +2,20 @@
 
 All notable changes to `laravel-signal-aware-command` will be documented in this file.
 
+## 2.1.1 - 2025-11-27
+
+### What's Changed
+
+* Update issue template by @AlexVanderbist in https://github.com/spatie/laravel-signal-aware-command/pull/18
+* Added Symfony 8 support to all symfony/* packages. by @thecaliskan in https://github.com/spatie/laravel-signal-aware-command/pull/20
+
+### New Contributors
+
+* @AlexVanderbist made their first contribution in https://github.com/spatie/laravel-signal-aware-command/pull/18
+* @thecaliskan made their first contribution in https://github.com/spatie/laravel-signal-aware-command/pull/20
+
+**Full Changelog**: https://github.com/spatie/laravel-signal-aware-command/compare/2.1.0...2.1.1
+
 ## 2.1.0 - 2025-02-14
 
 ### What's Changed
