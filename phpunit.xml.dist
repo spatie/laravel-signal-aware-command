@@ -3,12 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     backupGlobals="false"
-    backupStaticAttributes="false"
+    backupStaticProperties="false"
     bootstrap="vendor/autoload.php"
     colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
     executionOrder="random"
@@ -16,7 +13,7 @@
     failOnRisky="true"
     failOnEmptyTestSuite="true"
     beStrictAboutOutputDuringTests="true"
-    verbose="true"
+    cacheDirectory="build/.phpunit.cache"
 >
     <testsuites>
         <testsuite name="Spatie Test Suite">
@@ -24,9 +21,6 @@
         </testsuite>
     </testsuites>
     <coverage>
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
         <report>
             <html outputDirectory="build/coverage"/>
             <text outputFile="build/coverage.txt"/>
@@ -36,4 +30,9 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
 </phpunit>
